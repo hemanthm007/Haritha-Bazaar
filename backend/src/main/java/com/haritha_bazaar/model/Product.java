@@ -51,3 +51,4 @@ public class Product {
     public String getSellerEmail() { return sellerEmail; }
     public void setSellerEmail(String sellerEmail) { this.sellerEmail = sellerEmail; }
 }
+
