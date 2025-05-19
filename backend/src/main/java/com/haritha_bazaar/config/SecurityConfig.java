@@ -15,7 +15,16 @@ public class SecurityConfig {
                 .requestMatchers("/api/orders/**").authenticated()
                 .anyRequest().permitAll()
             )
-            .oauth2ResourceServer(oauth2 -> oauth2.jwt());
+            // .oauth2ResourceServer(oauth2 -> oauth2.jwt());
+            .oauth2ResourceServer(oauth2 ->
+            oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(new CustomJwtAuthenticationConverter()))
+        )
+            .authorizeHttpRequests(authz -> authz
+    .requestMatchers("/api/seller/**").hasAuthority("ROLE_SELLER")
+    .requestMatchers("/api/orders/**").hasAuthority("ROLE_CUSTOMER")
+    .anyRequest().permitAll()
+)
+
 
         return http.build();
     }
