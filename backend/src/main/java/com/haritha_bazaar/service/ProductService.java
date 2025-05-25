@@ -26,6 +26,4 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
-
-    // Implement edit, delete later as needed
 }
